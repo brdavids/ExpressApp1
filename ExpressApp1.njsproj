@@ -34,6 +34,10 @@
     <Compile Include="routes\index.js" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="public\images\1.jpg" />
+    <Content Include="public\images\2.jpg" />
+    <Content Include="public\images\3.jpg" />
+    <Content Include="public\images\4.jpg" />
     <Content Include="public\javascripts\bootstrap.js" />
     <Content Include="public\javascripts\bootstrap.min.js" />
     <Content Include="public\javascripts\jquery-1.10.2.intellisense.js" />
