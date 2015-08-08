@@ -1,0 +1,27 @@
+﻿//doctype html
+extends layout
+
+block content
+  head
+    title Game!
+  body
+    h1(id="name") Name
+    br
+    .row
+      .col-md-3
+        p
+          img(src="../images/aaron.JPG", height=200, width=200, id="a")
+      .col-md-3
+        p
+          img(src="../images/emerson.png", height=200, width=200, id="b")
+    .row
+      .col-md-3
+        p
+          img(src="../images/shobana.JPG", height=200, width=200, id="c")
+      .col-md-3
+        p
+          img(src="../images/tom.JPG", height=200, width=200, id="d")
+    br
+    br
+    a.btn.btn-primary.btn-large(href='/game') Play Again!
+    script(src="/javascripts/game.js")

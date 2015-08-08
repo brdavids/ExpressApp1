@@ -31,6 +31,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Content Include="public\images\bryan.JPG" />
+    <Content Include="public\images\cat.JPG" />
+    <Content Include="public\images\dog.JPG" />
+    <Content Include="public\images\donald.JPG" />
+    <Content Include="public\javascripts\game.js" />
     <Compile Include="routes\index.js" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +70,7 @@
     <Content Include="views\contact.jade" />
     <Content Include="views\about.jade" />
     <Content Include="views\index.jade" />
+    <Content Include="views\game.jade" />
     <Content Include="views\layout.jade" />
   </ItemGroup>
   <ItemGroup>
