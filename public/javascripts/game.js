@@ -2,35 +2,78 @@
 var myDone = false;
 
 //Initialize names and faces
-var names = ['Shobana', 'Emerson', 'Aaron', 'Tom', 'Donald', 'Dog', 'Cat', 'Bryan'];
-var photoMap = new Map();
-photoMap.set('Aaron', '../images/aaron.JPG');
-photoMap.set('Emerson', '../images/emerson.png');
-photoMap.set('Shobana', '../images/shobana.JPG');
-photoMap.set('Tom', '../images/tom.JPG');
-photoMap.set('Bryan', '../images/bryan.JPG');
-photoMap.set('Donald', '../images/donald.JPG');
-photoMap.set('Dog', '../images/dog.JPG');
-photoMap.set('Cat', '../images/cat.JPG');
+var nameJpgArray = [['David',
+                'Aaron',
+                'Tom',
+                'Anna',
+                'Brandon',
+                'Daniel',
+                'Chris',
+                'Kyle',
+                'Dampier',
+                'Priyanka',
+                'Sijia',
+                'Cary',
+                'Nhi',
+                'Alf',
+                'Grace',
+                'Lacey',
+                'Ray',
+                'Stephanie',
+                'Michael',
+                'Emerson',
+                'Abbie',
+                'Brittany',
+                'Chelsey',
+                'Rachel',
+                'Michael2',
+                'Rick',
+                'Shobana'], ['bao21d.jpg',
+                            'aboswell.jpg',
+                            'dtomcamp.jpg',
+                            'casciari.jpg',
+                            'brandonc.jpg',
+                            'cloesd.jpg',
+                            'cwd89.jpg',
+                            'kyled17.jpg',
+                            'dampier.jpg',
+                            'psgentry.jpg',
+                            'sijman.jpg',
+                            'cjanz.jpg',
+                            'nhile05.jpg',
+                            'alf6679.jpg',
+                            'gracie7.jpg',
+                            'ljlowber.jpg',
+                            'rloyola.jpg',
+                            'lus.jpg',
+                            'mikemosh.jpg',
+                            'ejp26.jpg',
+                            'pooklook.jpg',
+                            'brit88.jpg',
+                            'croney.jpg',
+                            'rrudnick.jpg',
+                            'mjscott.jpg',
+                            'antlers.jpg',
+                            'svaidy.jpg']];
 
 //Pick a name at random
 var el = document.getElementById('name');
-var nameIndex = Math.round(Math.random() * names.length);
-if (nameIndex >= 0 && nameIndex < names.length) {
-    el.textContent = 'Click on ' + names[nameIndex] + '\'s picture';
+var nameIndex = Math.round(Math.random() * nameJpgArray[0].length);
+if (nameIndex >= 0 && nameIndex < nameJpgArray[0].length) {
+    el.textContent = 'Who is ' + nameJpgArray[0][nameIndex] + '?';
 }
 else {
-    nameIndex = names.length - 1;
-    el.textContent = 'Click on ' + names[nameIndex] + '\'s picture';
+    nameIndex = nameJpgArray[0].length - 1;
+    el.textContent = 'Who is ' + nameJpgArray[0][nameIndex] + '?';
 }
 
 //Randomize image choices
 var choicesMap = new Map();
 var choiceNames = [];
-for (var i = 0; i < names.length; i++)
+for (var i = 0; i < nameJpgArray[0].length; i++)
 {
     if (i != nameIndex) {
-        choiceNames.push(names[i]);
+        choiceNames.push(nameJpgArray[0][i]);
     }
 }
 var answerIndex = Math.round(Math.random() * NUMBER_OF_CHOICES);
@@ -62,9 +105,10 @@ if (correctAnswer != 'a'){
     choiceNames.splice(aIndex, 1);
 }
 else{
-    choicesMap.set('a', names[nameIndex]);
+    choicesMap.set('a', nameJpgArray[0][nameIndex]);
 }
-answerA.src = photoMap.get(choicesMap.get('a'));
+var tempIndex = nameJpgArray[0].indexOf(choicesMap.get('a'));
+answerA.src = '../images/' + nameJpgArray[1][tempIndex];
 
 //Setup answer B
 var answerB = document.getElementById('b');
@@ -80,9 +124,10 @@ if (correctAnswer != 'b') {
     choiceNames.splice(bIndex, 1);
 }
 else {
-    choicesMap.set('b', names[nameIndex]);
+    choicesMap.set('b', nameJpgArray[0][nameIndex]);
 }
-answerB.src = photoMap.get(choicesMap.get('b'));
+tempIndex = nameJpgArray[0].indexOf(choicesMap.get('b'));
+answerB.src = '../images/' + nameJpgArray[1][tempIndex];
 
 //Setup answer C
 var answerC = document.getElementById('c');
@@ -98,9 +143,10 @@ if (correctAnswer != 'c') {
     choiceNames.splice(cIndex, 1);
 }
 else {
-    choicesMap.set('c', names[nameIndex]);
+    choicesMap.set('c', nameJpgArray[0][nameIndex]);
 }
-answerC.src = photoMap.get(choicesMap.get('c'));
+tempIndex = nameJpgArray[0].indexOf(choicesMap.get('c'));
+answerC.src = '../images/' + nameJpgArray[1][tempIndex];
 
 //Setup answer D
 var answerD = document.getElementById('d');
@@ -116,9 +162,10 @@ if (correctAnswer != 'd') {
     choiceNames.splice(dIndex, 1);
 }
 else {
-    choicesMap.set('d', names[nameIndex]);
+    choicesMap.set('d', nameJpgArray[0][nameIndex]);
 }
-answerD.src = photoMap.get(choicesMap.get('d'));
+tempIndex = nameJpgArray[0].indexOf(choicesMap.get('d'));
+answerD.src = '../images/' + nameJpgArray[1][tempIndex];
 
 function checkAnswer(answer) {
     if (!myDone) {
@@ -129,6 +176,37 @@ function checkAnswer(answer) {
         else {
             el.textContent = 'Wrong!';
         }
+        var a = document.getElementById('aName');
+        a.textContent = choicesMap.get('a');
+        var b = document.getElementById('bName');
+        b.textContent = choicesMap.get('b');
+        var c = document.getElementById('cName');
+        c.textContent = choicesMap.get('c');
+        var d = document.getElementById('dName');
+        d.textContent = choicesMap.get('d');
         myDone = true;
     }
 }
+
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var fiveSeconds = 5,
+        display = document.querySelector('#time');
+    startTimer(fiveSeconds, display);
+};

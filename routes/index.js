@@ -18,3 +18,7 @@ exports.contact = function (req, res) {
 exports.game = function (req, res) {
     res.render('game', { title: 'Game', year: new Date().getFullYear(), message: 'Would you like to play a game?' });
 };
+
+exports.signup = function (req, res) {
+    res.render('signup', { title: 'Signup', year: new Date().getFullYear(), message: 'Sign up to play' });
+};

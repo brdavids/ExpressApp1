@@ -31,18 +31,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
-    <Content Include="public\images\bryan.JPG" />
-    <Content Include="public\images\cat.JPG" />
-    <Content Include="public\images\dog.JPG" />
-    <Content Include="public\images\donald.JPG" />
+    <Content Include="app_config.json" />
+    <Content Include="iam_policy.json" />
+    <Content Include="public\data\classmates.csv" />
     <Content Include="public\javascripts\game.js" />
+    <Content Include="public\javascripts\csvToArray.v2.1.js" />
     <Compile Include="routes\index.js" />
+    <Content Include="views\signup.jade" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="public\images\aaron.jpg" />
-    <Content Include="public\images\emerson.png" />
-    <Content Include="public\images\shobana.jpg" />
-    <Content Include="public\images\tom.jpg" />
     <Content Include="public\javascripts\bootstrap.js" />
     <Content Include="public\javascripts\bootstrap.min.js" />
     <Content Include="public\javascripts\jquery-1.10.2.intellisense.js" />
@@ -75,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />
+    <Folder Include="public\data\" />
     <Folder Include="public\fonts\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
