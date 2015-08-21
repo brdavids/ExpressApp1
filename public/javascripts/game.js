@@ -173,6 +173,9 @@ function checkAnswer(answer) {
         if (answer === correctAnswer) {
             el.textContent = 'Correct!';
         }
+        else if (answer === '') {
+            el.textContent = 'Time\'s up!';
+        }
         else {
             el.textContent = 'Wrong!';
         }
@@ -188,25 +191,81 @@ function checkAnswer(answer) {
     }
 }
 
-function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
+window.onload = function () {
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+    var display = document.getElementsByClassName('name'),
+        timer = new CountDownTimer(5);
 
-        display.textContent = minutes + ":" + seconds;
+    timer.onTick(format).onTick(timeIsUp).start();
 
-        if (--timer < 0) {
-            timer = duration;
+    function timeIsUp() {
+        if (this.expired()) {
+            checkAnswer('');
         }
-    }, 1000);
+    }
+
+    function format(minutes, seconds) {
+        if (!myDone) {
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            var timeBar = '';
+            for (var i = 0; i < seconds; i++) {
+                timeBar += ' =';
+            }
+            for (var i = 0; i < display.length; i++) {
+                display[i].textContent = timeBar;
+            }
+        }
+    }
+};
+
+function CountDownTimer(duration, granularity) {
+    this.duration = duration;
+    this.granularity = granularity || 1000;
+    this.tickFtns = [];
+    this.running = false;
 }
 
-window.onload = function () {
-    var fiveSeconds = 5,
-        display = document.querySelector('#time');
-    startTimer(fiveSeconds, display);
+CountDownTimer.prototype.start = function() {
+    if (this.running) {
+        return;
+    }
+    this.running = true;
+    var start = Date.now(),
+        that = this,
+        diff, obj;
+
+    (function timer() {
+        diff = that.duration - (((Date.now() - start) / 1000) | 0);
+    
+        if (diff > 0) {
+            setTimeout(timer, that.granularity);
+        } else {
+            diff = 0;
+            that.running = false;
+        }
+
+        obj = CountDownTimer.parse(diff);
+        that.tickFtns.forEach(function(ftn) {
+            ftn.call(this, obj.minutes, obj.seconds);
+        }, that);
+    }());
+};
+
+CountDownTimer.prototype.onTick = function(ftn) {
+    if (typeof ftn === 'function') {
+        this.tickFtns.push(ftn);
+    }
+    return this;
+};
+
+CountDownTimer.prototype.expired = function() {
+    return !this.running;
+};
+
+CountDownTimer.parse = function(seconds) {
+    return {
+        'minutes': (seconds / 60) | 0,
+        'seconds': (seconds % 60) | 0
+    };
 };

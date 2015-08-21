@@ -33,7 +33,6 @@
     <Compile Include="app.js" />
     <Content Include="app_config.json" />
     <Content Include="iam_policy.json" />
-    <Content Include="public\data\classmates.csv" />
     <Content Include="public\javascripts\game.js" />
     <Content Include="public\javascripts\csvToArray.v2.1.js" />
     <Compile Include="routes\index.js" />
